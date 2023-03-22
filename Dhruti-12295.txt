@@ -38,43 +38,42 @@ elif(S==1 and R==1): # this will print an error message
 
 CODE:JK FLIP-FLOP:-
 
-# Initialize the J and K inputs
+# initialize variables
+Q = 0
+Q_bar = 1
 J = 0
 K = 0
 
-# Initialize the flip flop output and state
-output = 0
-state = 0
+# define the flip flop function
+def jk_flip_flop(J, K, Q, Q_bar):
+    if J == 1 and K == 0:
+        Q = 1
+        Q_bar = 0
+    elif J == 0 and K == 1:
+        Q = 0
+        Q_bar = 1
+    elif J == 1 and K == 1:
+        Q = 1 - Q
+        Q_bar = 1 - Q_bar
+    return Q, Q_bar
 
-# Define the flip flop function
-def jk_flip_flop(J, K, state):
-    if J == 1 and K == 1:
-        # Toggle the flip flop state
-        if state == 0:
-            state = 1
-        else:
-            state = 0
-    elif J == 1:
-        # Set the flip flop state to 1
-        state = 1
-    elif K == 1:
-        # Set the flip flop state to 0
-        state = 0
-    # Output the flip flop state
-    return state
+# test the flip flop function
+J = 1
+K = 0
+Q, Q_bar = jk_flip_flop(J, K, Q, Q_bar)
+print("Q:", Q, "Q_bar:", Q_bar)
 
-# Test the flip flop function with various inputs
-output = jk_flip_flop(0, 0, output)
-print("Output: ", output)  # Output: 0
+J = 0
+K = 1
+Q, Q_bar = jk_flip_flop(J, K, Q, Q_bar)
+print("Q:", Q, "Q_bar:", Q_bar)
 
-output = jk_flip_flop(1, 0, output)
-print("Output: ", output)  # Output: 1
+J = 1
+K = 1
+Q, Q_bar = jk_flip_flop(J, K, Q, Q_bar)
+print("Q:", Q, "Q_bar:", Q_bar)
 
-output = jk_flip_flop(0, 1, output)
-print("Output: ", output)  # Output: 0
-
-output = jk_flip_flop(1, 1, output)
-print("Output: ", output)  # Output: 1
-
-output = jk_flip_flop(1, 1, output)
-print("Output: ", output)  # Output: 0
+J = 0
+K = 0
+Q, Q_bar = jk_flip_flop(J, K, Q, Q_bar)
+print("Q:", Q, "Q_bar:", Q_bar)
